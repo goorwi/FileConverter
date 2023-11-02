@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class XmlToJsonConverter {
-    public void Convert() throws JAXBException, FileNotFoundException {
-        Phones phones = ReadXml("src\\main\\resources\\data.xml");
-        WriteJson("src\\main\\resources\\outData.json", phones);
+    public void Convert(String in, String out) throws JAXBException, FileNotFoundException {
+        Phones phones = ReadXml(in);
+        WriteJson(out, phones);
     }
     private Phones ReadXml(String path) throws JAXBException {
         File file = new File(path);
@@ -50,9 +50,9 @@ public class XmlToJsonConverter {
         JsonObject jo = objectBuilder.build();
 
         OutputStream os = new FileOutputStream(path);
-        JsonWriter jsonWriter = Json.createWriter(os);
+        JsonWriter jsonWriter;
 
-        Map< String, Boolean > config = new HashMap< String, Boolean >();
+        Map< String, Boolean > config = new HashMap<>();
         config.put(JsonGenerator.PRETTY_PRINTING, true);
 
         JsonWriterFactory factory = Json.createWriterFactory(config);
