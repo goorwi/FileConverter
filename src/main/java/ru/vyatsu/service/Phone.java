@@ -11,7 +11,7 @@ public class Phone {
     private Specifications specifications;
 
     public void setBrand(String brand) {this.brand = brand;}
-    @XmlAttribute
+    @XmlAttribute (name = "name")
     public String getBrand() {return this.brand;}
 
     public void setModel(String model) {this.model = model;}
