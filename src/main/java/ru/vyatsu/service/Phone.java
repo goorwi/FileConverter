@@ -19,5 +19,9 @@ public class Phone {
     public Integer getPrice() {return this.price;}
     public void setSpecifications(Specifications specifications) {this.specifications = specifications;}
     public Specifications getSpecifications() {return this.specifications;}
-
+    public Boolean isNull()
+    {
+        if (brand == null && model == null && color == null && price == null && specifications == null) return true;
+        else return false;
+    }
 }
