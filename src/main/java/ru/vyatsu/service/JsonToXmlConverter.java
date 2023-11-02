@@ -16,9 +16,15 @@ import java.util.List;
 public class JsonToXmlConverter {
     public void Convert(String in, String out) throws FileNotFoundException, JAXBException {
         Phones phones = ReadJson(in);
-
+        WriteXml(out, phones);
     }
+    private void WriteXml(String path, Phones phones) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(Phones.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
+        marshaller.marshal(phones, new File(path));
+    }
     private Phones ReadJson(String path) throws FileNotFoundException {
         FileInputStream inputStream = new FileInputStream(path);
 
@@ -69,8 +75,7 @@ public class JsonToXmlConverter {
         }
         phones.setPhones(phoneList);
 
-
-        return null;
+        return phones;
     }
     private void SetStringValue(Phone phone, Specifications spec, String key, String value){
         switch (key)
