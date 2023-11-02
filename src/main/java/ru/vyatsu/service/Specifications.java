@@ -1,6 +1,10 @@
 package ru.vyatsu.service;
 
 public class Specifications {
-    public String cpu;
-    public String storage;
+    private String cpu;
+    private String storage;
+    public void setCpu(String cpu) {this.cpu = cpu;}
+    public String getCpu() {return this.cpu;}
+    public void setStorage(String storage) {this.storage = storage;}
+    public String getStorage() {return this.storage;}
 }
