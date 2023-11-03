@@ -1,9 +1,11 @@
 package ru.vyatsu.service;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
+@XmlType(propOrder = {"brand", "model", "color", "price", "specifications"})
 public class Phone {
-
     private String brand;
     private String model;
     private String color;
@@ -29,5 +31,9 @@ public class Phone {
     public void setSpecifications(Specifications specifications) {this.specifications = specifications;}
     @XmlElement
     public Specifications getSpecifications() {return this.specifications;}
-
+    public Boolean isNull()
+    {
+        if (brand == null && model == null && color == null && price == null && specifications == null) return true;
+        else return false;
+    }
 }

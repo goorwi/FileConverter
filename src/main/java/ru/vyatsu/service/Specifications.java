@@ -11,4 +11,9 @@ public class Specifications {
     public void setStorage(String storage) {this.storage = storage;}
     @XmlElement
     public String getStorage() {return this.storage;}
+    public Boolean isNull()
+    {
+        if (cpu == null && storage == null) return true;
+        else return false;
+    }
 }
