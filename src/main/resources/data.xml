@@ -9,6 +9,15 @@
             <storage>128 GB</storage>
         </specifications>
     </brand>
+    <brand name="Apple">
+        <model>iPhone 7</model>
+        <color>Gray</color>
+        <price>400</price>
+        <specifications>
+            <cpu>Apple A15 Bionic</cpu>
+            <storage>128 GB</storage>
+        </specifications>
+    </brand>
     <brand name="Samsung">
         <model>Galaxy S21</model>
         <color>Gray</color>
@@ -16,6 +25,15 @@
         <specifications>
             <cpu>Samsung Exynos 2100</cpu>
             <storage>256 GB</storage>
+        </specifications>
+    </brand>
+    <brand name="Samsung">
+        <model>Galaxy S21</model>
+        <color>Black</color>
+        <price>860</price>
+        <specifications>
+            <cpu>Samsung Exynos 2100</cpu>
+            <storage>128 GB</storage>
         </specifications>
     </brand>
     <brand name="Nokia">
