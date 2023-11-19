@@ -1,15 +1,13 @@
 package ru.vyatsu;
 
 import lombok.val;
-import ru.vyatsu.service.Convertable;
+
 import ru.vyatsu.service.ConvertingException;
 import ru.vyatsu.service.ConvertingType;
 import ru.vyatsu.service.MenuService;
 import ru.vyatsu.service.converters.JsonToXmlConverter;
 import ru.vyatsu.service.converters.XmlToJsonConverter;
 
-import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
 public class Main {
@@ -17,8 +15,6 @@ public class Main {
 
     public static void main(String[] args) throws ConvertingException {
         try {
-            args[0] = "src\\main\\resources\\data.xml";
-            args[1] = "src\\main\\resources\\neData.json";
             String input, output;
             switch (args.length) {
                 case 2 -> {
@@ -34,7 +30,7 @@ public class Main {
             }
 
             val convertingType = ConvertingType.determineType(input, output);
-            Convertable convertable = switch (convertingType) {
+            val convertable = switch (convertingType) {
                 case XML_TO_JSON -> new XmlToJsonConverter();
                 case JSON_TO_XML -> new JsonToXmlConverter();
                 case INCORRECT -> null;
@@ -42,8 +38,9 @@ public class Main {
 
             if (convertable == null) throw new ConvertingException("Некорректные форматы файлов!");
             convertable.convert(input, output);
+            logger.info("Преобразование прошло успешно!");
         } catch (Exception ex) {
-            throw new ConvertingException("Произошла ошибка" + ex.getMessage());
+            throw new ConvertingException("Произошла ошибка: " + ex.getMessage());
         }
     }
 }

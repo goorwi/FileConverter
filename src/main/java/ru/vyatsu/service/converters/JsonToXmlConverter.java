@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class JsonToXmlConverter implements Convertable {
@@ -39,16 +40,15 @@ public class JsonToXmlConverter implements Convertable {
     }
 
     private Phones readJson(String path) throws ConvertingException {
-        try {
-            FileInputStream inputStream = new FileInputStream(path);
-
-            JsonParserFactory factory = Json.createParserFactory(null);
-            JsonParser parser = factory.createParser(inputStream, UTF_8);
+        JsonParser parser = null;
+        try (val inputStream = new FileInputStream(path)) {
+            val factory = Json.createParserFactory(null);
+            parser = factory.createParser(inputStream, UTF_8);
             String keyName = null;
 
             if (!parser.hasNext() && parser.next() != JsonParser.Event.START_ARRAY) return null;
 
-            Phones phones = new Phones();
+            val phones = new Phones();
             List<Phone> phoneList = new ArrayList<>();
             Phone phone = new Phone();
             Specifications spec = new Specifications();
@@ -64,7 +64,7 @@ public class JsonToXmlConverter implements Convertable {
                         }
                     }
                     case END_OBJECT -> {
-                        if (!phone.isNull()) {
+                        if (Boolean.FALSE.equals(phone.isNull())) {
                             phone.setSpecifications(spec);
                             phoneList.add(phone);
                             phone = new Phone();
@@ -79,8 +79,12 @@ public class JsonToXmlConverter implements Convertable {
             phones.setPhones(phoneList);
 
             return phones;
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             throw new ConvertingException("Ошибка при чтении файла!", ex);
+        } finally {
+            if (parser != null) {
+                parser.close();
+            }
         }
     }
 
