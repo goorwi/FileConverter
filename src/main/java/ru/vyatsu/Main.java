@@ -1,39 +1,46 @@
 package ru.vyatsu;
 
-import ru.vyatsu.service.JsonToXmlConverter;
-import ru.vyatsu.service.XmlToJsonConverter;
+import lombok.val;
+import ru.vyatsu.service.Convertable;
+import ru.vyatsu.service.ConvertingException;
+import ru.vyatsu.service.ConvertingType;
+import ru.vyatsu.service.MenuService;
+import ru.vyatsu.service.converters.JsonToXmlConverter;
+import ru.vyatsu.service.converters.XmlToJsonConverter;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
+import java.util.logging.Logger;
 
 public class Main {
-    public static void main(String[] args) throws JAXBException, FileNotFoundException {
-        if (args.length == 2)
-        {
-            String input = args[0];
-            String output = args[1];
-            if (input.endsWith(".xml") && output.endsWith(".json"))
-            {
-                XmlToJsonConverter conv = new XmlToJsonConverter();
-                conv.Convert(input, output);
-
-                System.out.println("Преобразование выполнено успешно!");
-            }
-            else if (input.endsWith(".json") && output.endsWith(".xml"))
-            {
-                JsonToXmlConverter conv = new JsonToXmlConverter();
-                conv.Convert(input, output);
-
-                System.out.println("Преобразование выполнено успешно!");
-            }
-            else {
-                System.out.println("Конвертер предусматривает преобразование из xml в json, либо из json в xml." +
-                        "Иные расширения недоступны");
+    static Logger logger = Logger.getLogger(Main.class.getName());
+    public static void main(String[] args) throws ConvertingException {
+        try {
+            String input, output;
+            switch (args.length) {
+                case 2 -> {
+                    input = args[0];
+                    output = args[1];
+                }
+                case 0 -> {
+                    input = MenuService.getInputFile();
+                    output = MenuService.getOutputFile();
+                }
+                default -> throw new ConvertingException("Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.");
             }
 
+            val convertingType = ConvertingType.determineType(input, output);
+            Convertable convertable = switch (convertingType) {
+                case XML_TO_JSON -> new XmlToJsonConverter();
+                case JSON_TO_XML -> new JsonToXmlConverter();
+                case INCORRECT -> null;
+            };
+
+            if (convertable == null) throw new ConvertingException("Некорректные форматы файлов!");
+            convertable.convert(input, output);
         }
-        else {
-            System.out.println("Ошибка! Команда должна содержать 2 аргумента: <путь исходного файла> <путь конвертированного файла>");
+        catch (Exception ex) {
+            throw new ConvertingException("Произошла ошибка" + ex.getMessage());
         }
     }
 }
