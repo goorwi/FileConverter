@@ -14,8 +14,11 @@ import java.util.logging.Logger;
 
 public class Main {
     static Logger logger = Logger.getLogger(Main.class.getName());
+
     public static void main(String[] args) throws ConvertingException {
         try {
+            args[0] = "src\\main\\resources\\data.xml";
+            args[1] = "src\\main\\resources\\neData.json";
             String input, output;
             switch (args.length) {
                 case 2 -> {
@@ -26,7 +29,8 @@ public class Main {
                     input = MenuService.getInputFile();
                     output = MenuService.getOutputFile();
                 }
-                default -> throw new ConvertingException("Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.");
+                default ->
+                        throw new ConvertingException("Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.");
             }
 
             val convertingType = ConvertingType.determineType(input, output);
@@ -38,8 +42,7 @@ public class Main {
 
             if (convertable == null) throw new ConvertingException("Некорректные форматы файлов!");
             convertable.convert(input, output);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new ConvertingException("Произошла ошибка" + ex.getMessage());
         }
     }

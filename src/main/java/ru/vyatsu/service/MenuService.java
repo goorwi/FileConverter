@@ -8,6 +8,7 @@ import java.util.Scanner;
 @UtilityClass
 public class MenuService {
     private final Scanner scanner = new Scanner(System.in);
+
     public String getInputFile() {
         while (true) {
             System.out.println("Введите путь к файлу, который необходимо преобразовать: ");
@@ -18,6 +19,7 @@ public class MenuService {
             }
         }
     }
+
     public String getOutputFile() {
         while (true) {
             System.out.println("Введите путь файла, с преобразованными данными: ");
