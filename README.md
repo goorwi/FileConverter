@@ -15,9 +15,9 @@
 ## Пример использования
 - Для запуска конвертации data.xml в neData.json, необходимо выполнить запрос следующей команды:
 ```
-java -jar FileConverter.jar src\main\resources\data.xml src\main\resources\neData.json
+java -jar FileConverter.jar data.xml newData.json
 ```
 - Для запуска конвертации data.json в neData.xml, необходимо выполнить запрос следующей команды:
 ```
-java -jar FileConverter.jar src\main\resources\data.json src\main\resources\neData.xml
+java -jar FileConverter.jar data.json newData.xml
 ```
