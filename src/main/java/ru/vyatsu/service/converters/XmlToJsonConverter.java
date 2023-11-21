@@ -10,16 +10,19 @@ import javax.json.*;
 import javax.json.stream.JsonGenerator;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static ru.vyatsu.Main.logger;
+
 public class XmlToJsonConverter implements Convertable {
     public void convert(String in, String out) throws ConvertingException {
         var phones = readXml(in);
+        logger.info("Данные из файла xml считаны.");
         writeJson(out, phones);
+        logger.info("Данные записаны в файл json.");
     }
 
     private Phones readXml(String path) throws ConvertingException {
@@ -29,7 +32,7 @@ public class XmlToJsonConverter implements Convertable {
 
             val jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             return (Phones) jaxbUnmarshaller.unmarshal(file);
-        } catch (JAXBException ex) {
+        } catch (Exception ex) {
             throw new ConvertingException("Ошибка при чтении файла!", ex);
         }
     }
@@ -69,7 +72,7 @@ public class XmlToJsonConverter implements Convertable {
 
             jsonWriter.writeObject(jo);
             jsonWriter.close();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             throw new ConvertingException("Ошибка при записи файла!", ex);
         }
     }

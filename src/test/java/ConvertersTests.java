@@ -2,17 +2,11 @@ import lombok.val;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.vyatsu.service.Convertable;
-import ru.vyatsu.service.ConvertingException;
 import ru.vyatsu.service.converters.JsonToXmlConverter;
 import ru.vyatsu.service.converters.XmlToJsonConverter;
 
-import javax.json.JsonArray;
 import java.io.File;
-import java.nio.file.Paths;
 
-import static java.nio.file.Files.readString;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ConvertersTests {

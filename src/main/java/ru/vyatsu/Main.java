@@ -11,9 +11,9 @@ import ru.vyatsu.service.converters.XmlToJsonConverter;
 import java.util.logging.Logger;
 
 public class Main {
-    static Logger logger = Logger.getLogger(Main.class.getName());
+    public static Logger logger = Logger.getLogger(Main.class.getName());
 
-    public static void main(String[] args) throws ConvertingException {
+    public static void main(String[] args) {
         try {
             String input, output;
             switch (args.length) {
@@ -28,6 +28,7 @@ public class Main {
                 default ->
                         throw new ConvertingException("Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.");
             }
+            logger.info("Данные о файлах считаны.");
 
             val convertingType = ConvertingType.determineType(input, output);
             val convertable = switch (convertingType) {
@@ -37,10 +38,15 @@ public class Main {
             };
 
             if (convertable == null) throw new ConvertingException("Некорректные форматы файлов!");
+            switch (convertingType) {
+                case XML_TO_JSON -> logger.info("Определён сценарий конвертации: из xml в json.");
+                case JSON_TO_XML -> logger.info("Определён сценарий конвертации: из json в xml.");
+            }
+
             convertable.convert(input, output);
             logger.info("Преобразование прошло успешно!");
         } catch (Exception ex) {
-            throw new ConvertingException("Произошла ошибка: " + ex.getMessage());
+            logger.warning("Произошла ошибка: " + ex.getMessage());
         }
     }
 }

@@ -9,22 +9,23 @@ import ru.vyatsu.service.model.Specifications;
 
 import javax.json.Json;
 import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParserFactory;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static ru.vyatsu.Main.logger;
 
 public class JsonToXmlConverter implements Convertable {
     public void convert(String in, String out) throws ConvertingException {
         val phones = readJson(in);
+        logger.info("Данные из файла json считаны.");
         writeXml(out, phones);
+        logger.info("Данные записаны в файл xml");
     }
 
     private void writeXml(String path, Phones phones) throws ConvertingException {
