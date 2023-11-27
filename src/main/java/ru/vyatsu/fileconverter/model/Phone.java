@@ -1,11 +1,9 @@
-package ru.vyatsu.service.model;
+package ru.vyatsu.fileconverter.model;
 
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import javax.xml.bind.annotation.*;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
 @XmlType(propOrder = {"brand", "model", "color", "price", "specifications"})
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -21,7 +19,7 @@ public class Phone {
     @XmlElement(name = "specifications")
     Specifications specifications;
 
-    public Boolean isNull() {
+    public boolean isNull() {
         return (brand == null && model == null && color == null && price == null && specifications == null);
     }
 }

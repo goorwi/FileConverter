@@ -1,4 +1,4 @@
-package ru.vyatsu.service;
+package ru.vyatsu.fileconverter.exception;
 
 import lombok.experimental.StandardException;
 

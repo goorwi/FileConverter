@@ -1,9 +1,12 @@
 import lombok.val;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.vyatsu.Main;
+import ru.vyatsu.fileconverter.Main;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,13 +29,18 @@ class MainClassTests {
         }
     }
 
+
     @Test
     void testWithIncorrectArgs() {
+        val errContent = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(errContent));
         try {
             val args = new String[]{inputPath};
             Main.main(args);
+
+            assertEquals("Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.\r\n", errContent.toString());
         } catch (Exception ex) {
-            assertEquals("Произошла ошибка: Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.", ex.getMessage());
+            Assertions.fail(ex.getMessage());
         }
     }
 }
