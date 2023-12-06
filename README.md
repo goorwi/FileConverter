@@ -19,6 +19,10 @@
    cd FileConverter
    ```
 2. Собрать проект при помощи IDE или командной строки.
+- При помощи IDE (файл .jar будет собран в папку `out`):
+  - `File` -> `Project Structure` -> `Artifacts` -> `JAR (From modules with dependencies..)` -> `Main class: ru.vyatsu.fileconverter.Main`
+  - `Build` -> `Build artifacts` -> `Build`
+- Для сборки при помощи командной строки можно воспользоваться интернет-ресурсом: https://habr.com/ru/articles/125210/
 ## Структура проекта
 - `src`: основная папка проекта
   - `main/java/ru/vyatsu/fileconverter`: папка в которой находится основной код проекта
