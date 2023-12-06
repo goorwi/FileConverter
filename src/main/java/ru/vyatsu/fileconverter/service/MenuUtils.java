@@ -14,7 +14,7 @@ public class MenuUtils {
             System.out.println("Введите путь к файлу, который необходимо преобразовать: ");
             try {
                 return SCANNER.nextLine();
-            } catch (NoSuchElementException | IllegalStateException ex) {
+            } catch (NoSuchElementException | IllegalStateException thrown) {
                 System.err.println("Произошла ошибка ввода. Пожалуйста, попробуйте еще раз.");
             }
         }
@@ -25,7 +25,7 @@ public class MenuUtils {
             System.out.println("Введите путь файла, с преобразованными данными: ");
             try {
                 return SCANNER.nextLine();
-            } catch (NoSuchElementException | IllegalStateException ex) {
+            } catch (NoSuchElementException | IllegalStateException thrown) {
                 System.err.println("Произошла ошибка ввода. Пожалуйста, попробуйте еще раз.");
             }
         }

@@ -1,6 +1,5 @@
 import lombok.val;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.vyatsu.fileconverter.Main;
 
@@ -17,16 +16,11 @@ class MainClassTests {
 
     @Test
     void testWithCorrectArgs() {
-        try {
-            val args = new String[]{inputPath, outputPath};
-            Main.main(args);
+        Main.main(new String[]{inputPath, outputPath});
 
-            val outputFile = new File(outputPath);
-            assertTrue(outputFile.exists());
-            outputFile.delete();
-        } catch (Exception ex) {
-            Assertions.fail(ex.getMessage());
-        }
+        val outputFile = new File(outputPath);
+        assertTrue(outputFile.exists());
+        outputFile.delete();
     }
 
 
@@ -34,13 +28,8 @@ class MainClassTests {
     void testWithIncorrectArgs() {
         val errContent = new ByteArrayOutputStream();
         System.setErr(new PrintStream(errContent));
-        try {
-            val args = new String[]{inputPath};
-            Main.main(args);
+        Main.main(new String[]{inputPath});
 
-            assertEquals("Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.\r\n", errContent.toString());
-        } catch (Exception ex) {
-            Assertions.fail(ex.getMessage());
-        }
+        assertEquals("Неверное количество аргументов! Для автоматического режима введите 2 аргумента, для ручного режима не указывайте аргументы.\r\n", errContent.toString());
     }
 }

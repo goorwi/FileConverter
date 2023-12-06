@@ -1,77 +1,76 @@
-
 {
-    "models": [
-        {
-            "model": "iPhone 13",
-            "phone": {
-                "brand": "Apple",
-                "color": "Black",
-                "price": 860,
-                "specifications": {
-                    "cpu": "Apple A15 Bionic",
-                    "storage": "128 GB"
-                }
-            }
-        },
-        {
-            "model": "iPhone 7",
-            "phone": {
-                "brand": "Apple",
-                "color": "Gray",
-                "price": 400,
-                "specifications": {
-                    "cpu": "Apple A15 Bionic",
-                    "storage": "128 GB"
-                }
-            }
-        },
-        {
-            "model": "Galaxy S21",
-            "phone": {
-                "brand": "Samsung",
-                "color": "Gray",
-                "price": 860,
-                "specifications": {
-                    "cpu": "Samsung Exynos 2100",
-                    "storage": "256 GB"
-                }
-            }
-        },
-        {
-            "model": "Galaxy S21",
-            "phone": {
-                "brand": "Samsung",
-                "color": "Black",
-                "price": 860,
-                "specifications": {
-                    "cpu": "Samsung Exynos 2100",
-                    "storage": "128 GB"
-                }
-            }
-        },
-        {
-            "model": "3310",
-            "phone": {
-                "brand": "Nokia",
-                "color": "Blue",
-                "price": 65,
-                "specifications": {
-                    "cpu": "MediaTek MT6260",
-                    "storage": "16 MB"
-                }
-            }
-        },
-        {
-            "model": "13 Pro",
-            "phone": {
-                "brand": "Xiaomi",
-                "color": "White",
-                "price": 1210,
-                "specifications": {
-                    "cpu": "Qualcomm Snapdragon 8 Gen 2",
-                    "storage": "512 GB"
-                }
-            }
+  "models": [
+    {
+      "model": "iPhone 13",
+      "phone": {
+        "brand": "Apple",
+        "color": "Black",
+        "price": 860,
+        "specifications": {
+          "cpu": "Apple A15 Bionic",
+          "storage": "128 GB"
         }
-    ]
+      }
+    },
+    {
+      "model": "iPhone 7",
+      "phone": {
+        "brand": "Apple",
+        "color": "Gray",
+        "price": 400,
+        "specifications": {
+          "cpu": "Apple A15 Bionic",
+          "storage": "128 GB"
+        }
+      }
+    },
+    {
+      "model": "Galaxy S21",
+      "phone": {
+        "brand": "Samsung",
+        "color": "Gray",
+        "price": 860,
+        "specifications": {
+          "cpu": "Samsung Exynos 2100",
+          "storage": "256 GB"
+        }
+      }
+    },
+    {
+      "model": "Galaxy S21",
+      "phone": {
+        "brand": "Samsung",
+        "color": "Black",
+        "price": 860,
+        "specifications": {
+          "cpu": "Samsung Exynos 2100",
+          "storage": "128 GB"
+        }
+      }
+    },
+    {
+      "model": "3310",
+      "phone": {
+        "brand": "Nokia",
+        "color": "Blue",
+        "price": 65,
+        "specifications": {
+          "cpu": "MediaTek MT6260",
+          "storage": "16 MB"
+        }
+      }
+    },
+    {
+      "model": "13 Pro",
+      "phone": {
+        "brand": "Xiaomi",
+        "color": "White",
+        "price": 1210,
+        "specifications": {
+          "cpu": "Qualcomm Snapdragon 8 Gen 2",
+          "storage": "512 GB"
+        }
+      }
+    }
+  ]
 }

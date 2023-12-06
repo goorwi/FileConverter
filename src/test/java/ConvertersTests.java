@@ -18,31 +18,24 @@ class ConvertersTests {
     @Test
     void testConvertXmlToJson(@TempDir Path tempDir) {
         try {
-            String tempFile = tempDir.resolve("testData.json").toString();
-            XmlToJsonConverter converter = new XmlToJsonConverter();
-            converter.convert(xmlFilePath, tempFile);
+            val tempFile = tempDir.resolve("testData.json").toString();
+            new XmlToJsonConverter().convert(xmlFilePath, tempFile);
 
             assertTrue(FileUtils.contentEquals(new File(jsonXmlPath), new File(tempFile)));
-
-            new File(tempFile).delete();
-        } catch (Exception ex) {
-            Assertions.fail(ex.getMessage());
+        } catch (Exception thrown) {
+            Assertions.fail(thrown.getMessage());
         }
     }
 
     @Test
     void testConvertJsonToXml(@TempDir Path tempDir) {
         try {
-            String tempFile = tempDir.resolve("testData.xml").toString();
-            JsonToXmlConverter converter = new JsonToXmlConverter();
-            converter.convert(jsonXmlPath, tempFile);
+            val tempFile = tempDir.resolve("testData.xml").toString();
+            new JsonToXmlConverter().convert(jsonXmlPath, tempFile);
 
             assertTrue(FileUtils.contentEquals(new File(xmlFilePath), new File(tempFile)));
-
-            val outputFile = new File(tempFile);
-            outputFile.delete();
-        } catch (Exception ex) {
-            Assertions.fail(ex.getMessage());
+        } catch (Exception thrown) {
+            Assertions.fail(thrown.getMessage());
         }
     }
 }

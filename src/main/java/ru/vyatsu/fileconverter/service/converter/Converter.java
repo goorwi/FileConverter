@@ -1,4 +1,4 @@
-package ru.vyatsu.fileconverter.service;
+package ru.vyatsu.fileconverter.service.converter;
 
 import ru.vyatsu.fileconverter.exception.ConvertingException;
 

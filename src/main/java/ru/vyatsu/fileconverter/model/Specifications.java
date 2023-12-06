@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Specifications {
     @XmlElement(name = "cpu")
-    private String cpu;
+    String cpu;
     @XmlElement(name = "storage")
-    private String storage;
+    String storage;
 }
