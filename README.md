@@ -22,7 +22,8 @@
 - При помощи IDE (файл .jar будет собран в папку `out`):
   - `File` -> `Project Structure` -> `Artifacts` -> `JAR (From modules with dependencies..)` -> `Main class: ru.vyatsu.fileconverter.Main`
   - `Build` -> `Build artifacts` -> `Build`
-- Для сборки при помощи командной строки можно воспользоваться интернет-ресурсом: https://habr.com/ru/articles/125210/
+- Сборка при помощи Maven. Для этого необходимо ввести в командную строку Windows следующие команды:
+  - `mvn clean package`
 ## Структура проекта
 - `src`: основная папка проекта
   - `main/java/ru/vyatsu/fileconverter`: папка в которой находится основной код проекта
