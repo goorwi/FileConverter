@@ -12,7 +12,7 @@ public class ConvertingFactory {
     public static Converter createConverter(final String sourceFilePath, final String destinationFilePath) throws InvalidInputException, ConvertingException {
         try {
             if (!isFileValid(sourceFilePath) || !isFileValid(destinationFilePath)) {
-                throw new InvalidInputException("Некорректный ввод файлов!");
+                throw new InvalidInputException("Файлы имеют некорректные расширения!");
             }
 
             if (sourceFilePath.endsWith(".xml")) {
