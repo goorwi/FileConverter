@@ -1,28 +1,27 @@
 import lombok.val;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import ru.vyatsu.fileconverter.Main;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainClassTests {
     private final String inputPath = "src\\test\\resources\\data.xml";
-    private final String outputPath = "src\\test\\resources\\testData.json";
 
     @Test
-    void testWithCorrectArgs() {
-        Main.main(new String[]{inputPath, outputPath});
+    void testWithCorrectArgs(@TempDir Path tempDir) {
+        val tempFile = tempDir.resolve("testData.json").toString();
+        Main.main(new String[]{inputPath, tempFile});
 
-        val outputFile = new File(outputPath);
-        assertTrue(outputFile.exists());
-        outputFile.delete();
+        assertTrue(new File(tempFile).exists());
     }
-
 
     @Test
     void testWithIncorrectArgs() {

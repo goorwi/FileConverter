@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<phones>
+    <brand name="Apple">
+        <model>iPhone 13</model>
+        <color>Black</color>
+        <price>860</price>
+        <specifications>
+            <cpu>Apple A15 Bionic</cpu>
+            <storage>128 GB</storage>
+        </specifications>
+    </brand>
+    <brand name="Apple">
+        <model>iPhone 7</model>
+        <color>Gray</color>
+        <price>400</price>
+        <specifications>
+            <cpu>Apple A15 Bionic</cpu>
+            <storage>128 GB</storage>
+        </specifications>
+    </brand>
+    <brand name="Samsung">
+        <model>Galaxy S21</model>
+        <color>Gray</color>
+        <price>860</price>
+        <specifications>
+            <cpu>Samsung Exynos 2100</cpu>
+            <storage>256 GB</storage>
+        </specifications>
+    </brand>
+    <brand name="Samsung">
+        <model>Galaxy S21</model>
+        <color>Black</color>
+        <price>860</price>
+        <specifications>
+            <cpu>Samsung Exynos 2100</cpu>
+            <storage>128 GB</storage>
+        </specifications>
+    </brand>
+    <brand name="Nokia">
+        <model>3310</model>
+        <color>Blue</color>
+        <price>65</price>
+        <specifications>
+            <cpu>MediaTek MT6260</cpu>
+            <storage>16 MB</storage>
+        </specifications>
+    </brand>
+    <brand name="Xiaomi">
+        <model>13 Pro</model>
+        <color>White</color>
+        <price>1210</price>
+        <specifications>
+            <cpu>Qualcomm Snapdragon 8 Gen 2</cpu>
+            <storage>512 GB</storage>
+        </specifications>
+    </brand>
+</phones>

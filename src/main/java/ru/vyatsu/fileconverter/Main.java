@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.vyatsu.fileconverter.service.MenuUtils;
 import ru.vyatsu.fileconverter.service.convertingfactory.ConvertingFactory;
 
-import java.util.Arrays;
-
 public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
@@ -36,8 +34,8 @@ public class Main {
             System.out.printf("Файл '%s' успешно конвертирован в файл '%s'%n", sourceFilePath, destinationFilePath);
         } catch (Exception thrown) {
             System.err.printf("Произошла ошибка: %s%n", thrown.getMessage());
-            System.err.printf("Трассировка стека: %s%n", Arrays.stream(thrown.getStackTrace()).toList());
-            LOGGER.error("Ошибка: {}", thrown.getMessage());
+            LOGGER.error("Ошибка: {}", thrown.getCause().toString());
+            LOGGER.error("StackTrace: {}", thrown.getStackTrace());
         }
     }
 }

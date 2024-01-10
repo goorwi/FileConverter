@@ -1,7 +1,6 @@
 package ru.vyatsu.fileconverter.service.converter;
 
 import lombok.val;
-import org.apache.commons.io.FileUtils;
 import ru.vyatsu.fileconverter.exception.ConvertingException;
 import ru.vyatsu.fileconverter.model.Phone;
 import ru.vyatsu.fileconverter.model.Phones;
@@ -14,7 +13,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -23,14 +21,17 @@ public class JsonToXmlConverter implements Converter {
     private JAXBContext jaxbContext;
     private JsonParserFactory jsonParserFactory;
 
-    public void convert(final String sourceFilePath, final String destinationFilePath) throws ConvertingException {
+    public JsonToXmlConverter() throws ConvertingException {
         try {
             jaxbContext = JAXBContext.newInstance(Phones.class);
             jsonParserFactory = Json.createParserFactory(null);
-            writeXml(destinationFilePath, readJson(sourceFilePath));
         } catch (JAXBException thrown) {
             throw new ConvertingException("Произошла ошибка при создании JAXB контекста!", thrown);
         }
+    }
+
+    public void convert(final String sourceFilePath, final String destinationFilePath) throws ConvertingException {
+        writeXml(destinationFilePath, readJson(sourceFilePath));
     }
 
     private void writeXml(final String path, final Phones phones) throws ConvertingException {
@@ -47,7 +48,6 @@ public class JsonToXmlConverter implements Converter {
             val marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.marshal(phones, outputFile);
-            FileUtils.writeStringToFile(new File(path), FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8).replace("\n", "\r\n"), StandardCharsets.UTF_8);
         } catch (IOException thrown) {
             throw new ConvertingException(thrown.getMessage(), thrown);
         } catch (JAXBException thrown) {
@@ -55,7 +55,7 @@ public class JsonToXmlConverter implements Converter {
         }
     }
 
-    private Phones readJson(final String path) throws ConvertingException {
+    public Phones readJson(final String path) throws ConvertingException {
         try {
             if (!new File(path).exists()) {
                 throw new FileNotFoundException(String.format("Файл '%s' не был найден!", path));
